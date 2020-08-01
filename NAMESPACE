@@ -1,0 +1,6 @@
+exportPattern("^[[:alpha:]]+")
+importFrom("graphics", "abline", "lines", "plot")
+importFrom("stats", "dnorm", "dunif")
+S3method(print, npfit)
+S3method(plot, npfit)
+S3method(lines, npfit)

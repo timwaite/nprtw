@@ -1,0 +1,11 @@
+Package: nprtw
+Type: Package
+Title: Nonparametric regression
+Version: 0.1.0
+Author: Tim Waite 
+Maintainer: Tim Waite <timothy.waite@manchester.ac.uk>
+Description: This package implements various nonparametric regression techniques, including the Nadaraya-Watson and local average estimators, with bandwidth selection via cross-validation. It is mostly intended to support the course MATH4/68011 Linear Models and Nonparametric Regression, at the University of Manchester. 
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1
