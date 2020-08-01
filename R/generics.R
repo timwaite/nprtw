@@ -20,11 +20,18 @@
 #'  lines(local_average(simdata,h=0.04), col=4)
 #'
 
-plot.npfit <- function(x,  ...) { plot(x$data, ...); lines(x$t,x$mhat)}
+plot.npfit <- function(x,  ...) {
+  plot(x$data, ...);
+  ord <- order(x$t)
+  lines(x$t[ord],x$mhat[ord])
+}
 
 #' @export
 #' @rdname npfit-plot
-lines.npfit <- function(x, ...) { lines(x$t,x$mhat, ...) }
+lines.npfit <- function(x, ...) {
+  ord <- order(x$t)
+  lines(x$t[ord],x$mhat[ord], ...)
+}
 
 
 #' Print npfit object

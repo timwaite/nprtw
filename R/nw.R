@@ -44,9 +44,16 @@
 #'   fit$A
 nw <- function(data,
                h,
-               t=seq(from=min(data$x),to=max(data$x),length=200),
+               t=NULL,
                kernel=biweight,
                empty_nhood=NaN) {
+  if (is.null(t)) {
+    t <- seq(from=min(data$x),to=max(data$x),length=200)
+    t <- sort(c(t, data$x-h, data$x+h, data$x+h-1e-6, data$x-h+1e-6))
+    # NB the purpose of this elaborate evaluation grid is so that any discontinuities
+    # are shown accurately in plots
+    # relies on the support of the kernel being [-1,1]
+  }
   m <- length(t)
   n <- length(data$x)
   A <- matrix(0,nrow=m,ncol=n)
@@ -113,5 +120,5 @@ nw <- function(data,
 #'   fit$A
 local_average <- function(data,
                           h,
-                          t=seq(from=min(data$x),to=max(data$x),length=200),
+                          t=NULL,
                           empty_nhood=NaN) { nw(data,h,t,uniform,empty_nhood) }
