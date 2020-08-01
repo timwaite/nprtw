@@ -4,7 +4,7 @@
 #'
 #' @inheritParams local_average
 #' @param kernel a kernel function. The package supplies \code{uniform}, \code{gauss}, \code{epanechnikov} and \code{biweight} (the default).
-#'
+#'  If the support of the kernel is bounded, ensure it is scaled to [-1,1] to ensure correct plotting of any discontinuities.
 #' @inherit local_average return params
 #' @export
 #'
