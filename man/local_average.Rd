@@ -4,12 +4,7 @@
 \alias{local_average}
 \title{Local average estimator}
 \usage{
-local_average(
-  data,
-  h,
-  t = seq(from = min(data$x), to = max(data$x), length = 200),
-  empty_nhood = NaN
-)
+local_average(data, h, t = NULL, empty_nhood = NaN)
 }
 \arguments{
 \item{data}{the data used to fit the estimator. Must be a data frame with columns \code{x} and \code{y}, where \code{x} contains the design points \eqn{x_1,\ldots,x_n}

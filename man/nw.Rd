@@ -4,13 +4,7 @@
 \alias{nw}
 \title{Nadaraya-Watson estimator}
 \usage{
-nw(
-  data,
-  h,
-  t = seq(from = min(data$x), to = max(data$x), length = 200),
-  kernel = biweight,
-  empty_nhood = NaN
-)
+nw(data, h, t = NULL, kernel = biweight, empty_nhood = NaN)
 }
 \arguments{
 \item{data}{the data used to fit the estimator. Must be a data frame with columns \code{x} and \code{y}, where \code{x} contains the design points \eqn{x_1,\ldots,x_n}
@@ -20,7 +14,8 @@ and \code{y} contains the response values \eqn{Y_1,\ldots,Y_n}}
 
 \item{t}{(optional) a vector of points at which the estimator is evaluated. If unspecified, a sequence of 200 points is created that spans the range of the x-values in the data.}
 
-\item{kernel}{a kernel function. The package supplies \code{uniform}, \code{gauss}, \code{epanechnikov} and \code{biweight} (the default).}
+\item{kernel}{a kernel function. The package supplies \code{uniform}, \code{gauss}, \code{epanechnikov} and \code{biweight} (the default).
+If the support of the kernel is bounded, ensure it is scaled to [-1,1] to ensure correct plotting of any discontinuities.}
 
 \item{empty_nhood}{a scalar specfying a custom value to be returned at locations where the estimator is undefined (as occurs when there are no nearby data points to average).
 Default is \code{NaN}.}
