@@ -6,6 +6,7 @@
 
 #' @inheritParams nw
 #' @param degree the degree \eqn{p} of local polynomial to use. Defaults to \eqn{p=1} for local linear estimation.
+#' @param deriv if set to a positive integer, the function will estimate the \eqn{r}th derivative of the regression function, \eqn{m^{(r)}(x)}. Defauls to zero, so that \eqn{m(x)} is estimated.
 #' @inherit nw return params
 #' @return
 #' @export
@@ -41,12 +42,11 @@ local_poly <- function(data,
                        t=NULL,
                        kernel=biweight,
                        degree=1,
+                       deriv=0,
                        empty_nhood=NaN) {
   # if evaluation points not provided, form a plotting grid
-  if (is.null(t)) {
-    t <- seq(from=min(data$x),to=max(data$x),length=200)
-    t <- sort(c(t, data$x-h, data$x+h, data$x+h-1e-6, data$x-h+1e-6))
-  }
+  if (is.null(t)) t <- plotting_grid(data,h)
+  if (deriv>degree) stop("Error: cannot use local polynomial of degree ", degree, " to estimate derivative of order ", deriv,". Must have p>=r.")
   m <- length(t)
   n <- length(data$x)
   A <- matrix(0,nrow=m,ncol=n)
@@ -61,7 +61,7 @@ local_poly <- function(data,
       mhat[k] <- empty_nhood
       A[k,] <- NaN
     } else {
-      A[k,] <- tmp[1,]
+      A[k,] <- factorial(deriv)*tmp[deriv+1,]
     }
   }
   out <- list(t=t,h=h,mhat=A%*%data$y,A=A, data=data)
