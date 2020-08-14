@@ -4,7 +4,15 @@
 \alias{local_poly}
 \title{Local polynomial estimation}
 \usage{
-local_poly(data, h, t = NULL, kernel = biweight, degree = 1, empty_nhood = NaN)
+local_poly(
+  data,
+  h,
+  t = NULL,
+  kernel = biweight,
+  degree = 1,
+  deriv = 0,
+  empty_nhood = NaN
+)
 }
 \arguments{
 \item{data}{the data used to fit the estimator. Must be a data frame with columns \code{x} and \code{y}, where \code{x} contains the design points \eqn{x_1,\ldots,x_n}
@@ -19,6 +27,8 @@ If the support of the kernel is bounded, ensure it is scaled to [-1,1] to ensure
 
 \item{degree}{the degree \eqn{p} of local polynomial to use. Defaults to \eqn{p=1} for local linear estimation.}
 
+\item{deriv}{if set to a positive integer, the function will estimate the \eqn{r}th derivative of the regression function, \eqn{m^{(r)}(x)}. Defauls to zero, so that \eqn{m(x)} is estimated.}
+
 \item{empty_nhood}{a scalar specfying a custom value to be returned at locations where the estimator is undefined (as occurs when there are no nearby data points to average).
 Default is \code{NaN}.}
 }
@@ -26,7 +36,7 @@ Default is \code{NaN}.}
 
 }
 \description{
-Estimate a regression function using local polynomial estimation, essentially estimating a local Taylor series using locally weighted least squares.
+Estimate a regression function (or its derivative) using local polynomial estimation, essentially estimating a local Taylor series using locally weighted least squares.
 The function requires the user to specify a bandwidth, \eqn{h}.
 }
 \examples{
