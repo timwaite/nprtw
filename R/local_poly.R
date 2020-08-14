@@ -1,7 +1,7 @@
 
 #' Local polynomial estimation
 #'
-#' Estimate a regression function using local polynomial estimation, essentially estimating a local Taylor series using locally weighted least squares.
+#' Estimate a regression function (or its derivative) using local polynomial estimation, essentially estimating a local Taylor series using locally weighted least squares.
 #' The function requires the user to specify a bandwidth, \eqn{h}.
 
 #' @inheritParams nw
