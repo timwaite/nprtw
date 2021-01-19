@@ -57,7 +57,7 @@ local_poly <- function(data,
     W <- diag( (1/h)*kernel((data$x-t[k])/h) )
     info <- t(X)%*%W%*%X
     tmp <- tryCatch(solve(info, t(X)%*%W), error=function(e) e)
-    if (!identical(class(tmp),"matrix")) {
+    if (!inherits(tmp,"matrix")) {
       mhat[k] <- empty_nhood
       A[k,] <- NaN
     } else {

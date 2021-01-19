@@ -36,7 +36,7 @@ lscv <- function(h, data, estimator,  ...) {
     for (i in 1:n) {
       loo_data$x <- data$x[-i]
       loo_data$y <- data$y[-i]
-      mhat_xi_loo <- estimator(loo_data, h[k], data$x[i], ...)$mhat
+      mhat_xi_loo <- estimator(data=loo_data, h=h[k], t=data$x[i], ...)$mhat
       cv[k] <- cv[k] + (data$y[i] - mhat_xi_loo)^2 /n
     }
   }
